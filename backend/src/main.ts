@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import bookRouter from "./modules/books/book.routes.ts";
+import bookRouter from "./modules/books/book.routes.js";
 
 dotenv.config();
 
