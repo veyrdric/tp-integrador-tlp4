@@ -2,12 +2,14 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { DatabaseConnection } from "./config/databaseConnection.js";
+import bookRouter from "./modules/books/book.routes.js";
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api/books", bookRouter);
 
 const PORT = process.env.PORT || 3000;
 
