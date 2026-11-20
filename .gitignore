@@ -1,0 +1,12 @@
+# Variables de entorno: solo se versiona .env.example
+.env
+
+# Dependencias y compilados de cada proyecto
+node_modules/
+dist/
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
