@@ -17,5 +17,32 @@ services:
       timeout: 5s
       retries: 10
 
+  backend:
+    build: ./backend
+    container_name: biblioteca-backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      # Dentro de la red de Docker la base se llama "db" y escucha en 5432.
+      DB_HOST: db
+      DB_PORT: 5432
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: ${VITE_API_URL}
+    container_name: biblioteca-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
 volumes:
   pg_data:
